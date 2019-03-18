@@ -441,12 +441,14 @@ ${syncResult.productMrps.remoteProductMrps} ${i18n.t('product-sales-channel-pric
 	}
 
 	getDefaultUILanguageIndex() {
-		let langIdx = 0;
-		supportedUILanguages.forEach((lang, idx) => {
+		let langIdx = supportedUILanguages.reduce((final, lang, idx) => {
 			if (lang.name === this.props.settings.uiLanguage.name) {
-				langIdx = idx;
+				return idx;
 			}
-		});
+
+			return final;
+		}, 0);
+
 		return langIdx;
 	}
 
