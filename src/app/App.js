@@ -12,13 +12,13 @@ import { Provider } from 'react-redux';
 import store from './store';
 import PosApp from '../components/PosApp';
 import PosStorage from '../database/PosStorage';
-import { isEmptyObj } from '../services/Utilities';
 
 export default class App extends Component {
   async componentWillMount() {
     RNLanguages.addEventListener('change', this._onLanguagesChange);
-    const savedSettings = await PosStorage.loadSettings();
-    const uiLanguage = !isEmptyObj(savedSettings) && !isEmptyObj(savedSettings.uiLanguage) ? savedSettings.uiLanguage : { name: 'English', iso_code: 'en' }
+    // Load the settings from what was saved the last time or get the default
+    const savedSettings = await PosStorage.loadSettings() || PosStorage.getSettings();
+    const uiLanguage = savedSettings.uiLanguage;
     console.log(`Setting UI Language: ${JSON.stringify(uiLanguage)}`);
     i18n.locale = uiLanguage.iso_code;
   }

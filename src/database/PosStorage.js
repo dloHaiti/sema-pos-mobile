@@ -72,7 +72,7 @@ class PosStorage {
 		this.lastProductsSync = firstSyncDate;
 		this.tokenExpiration = firstSyncDate;
 
-		this.settings = { semaUrl: "http://dlo.semawater.org", site: "", user: "", password: "", uiLanguage: {}, token: "", siteId: "" };
+		this.settings = { semaUrl: "http://dlo.semawater.org", site: "", user: "", password: "", uiLanguage: { name: 'Kreyòl Ayisyen', iso_code: 'ht' }, token: "", siteId: "" };
 		this.salesChannels = [];
 		this.customerTypes = [];
 		this.receipts = [];
