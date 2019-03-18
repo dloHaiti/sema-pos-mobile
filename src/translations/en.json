@@ -14,7 +14,6 @@
 
   "settings": "Settings",
   "service-url-label": "SEMA Service URL",
-  "service-url-placeholder": "SEMA Service URL, (http://sema-service)",
   "site-label": "Site",
   "site-placeholder": "Site",
   "username-or-email-label": "Username or Email",

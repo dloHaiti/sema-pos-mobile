@@ -49,15 +49,18 @@ class SettingsProperty extends Component {
 				<View>
 					<Text style={styles.labelText}>{this.props.label}</Text>
 				</View>
-				<View style={[styles.inputContainer]}>
-					<TextInput
-						style={[styles.inputText,]}
-						underlineColorAndroid='transparent'
-						placeholder={this.props.placeHolder}
-						value={this.state.propertyText}
-						secureTextEntry={this.props.isSecure}
-						onChangeText={this.onChangeText.bind(this)} />
-				</View>
+				{this.props.noInput ?
+					<Text style={styles.noInputText}>{ this.state.propertyText }</Text> :
+					<View style={[styles.inputContainer]}>
+							<TextInput
+								style={[styles.inputText,]}
+								underlineColorAndroid='transparent'
+								placeholder={this.props.placeHolder}
+								value={this.state.propertyText}
+								secureTextEntry={this.props.isSecure}
+								onChangeText={this.onChangeText.bind(this)} />
+					</View>
+				}
 			</View>
 		);
 	}
@@ -143,6 +146,7 @@ class Settings extends Component {
 							marginTop={10}
 							placeHolder={i18n.t('service-url-placeholder')}
 							label={i18n.t('service-url-label')}
+							noInput={true}
 							isSecure={false}
 							valueFn={this.getUrl.bind(this)}
 							ref={this.url} />
@@ -342,7 +346,7 @@ ${syncResult.productMrps.remoteProductMrps} ${i18n.t('product-sales-channel-pric
 	onConnection() {
 		this.setState({ animating: true });
 		Communications.initialize(
-			this.url.current.state.propertyText,
+			this.getUrl(),
 			this.site.current.state.propertyText,
 			this.user.current.state.propertyText,
 			this.password.current.state.propertyText);
@@ -401,9 +405,9 @@ ${syncResult.productMrps.remoteProductMrps} ${i18n.t('product-sales-channel-pric
 		}
 	}
 	enableConnectionOrSync() {
-		let url = (this.url.current) ? this.url.current.state.propertyText : this.getUrl();
+		let url = this.getUrl();
 		let site = (this.site.current) ? this.site.current.state.propertyText : this.getSite();
-		let user = (this.url.current) ? this.user.current.state.propertyText : this.getUser();
+		let user = (this.user.current) ? this.user.current.state.propertyText : this.getUser();
 		let password = (this.password.current) ? this.password.current.state.propertyText : this.getPassword();
 
 		if (url.length > 0 && site.length > 0 && user.length > 0 && password.length > 0) {
@@ -421,7 +425,7 @@ ${syncResult.productMrps.remoteProductMrps} ${i18n.t('product-sales-channel-pric
 			this._clearDataAndSync();
 		}
 
-		PosStorage.saveSettings(this.url.current.state.propertyText,
+		PosStorage.saveSettings(this.getUrl(),
 			this.site.current.state.propertyText,
 			this.user.current.state.propertyText,
 			this.password.current.state.propertyText,
@@ -482,6 +486,13 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 
 const styles = StyleSheet.create({
+	noInputText: {
+		fontSize: inputFontHeight,
+		alignSelf: 'center',
+		width: inputTextWidth,
+		margin: marginTextInput
+	},
+
 	headerText: {
 		fontSize: 24,
 		color: 'black',
