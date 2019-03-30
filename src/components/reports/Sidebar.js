@@ -11,12 +11,12 @@ class Sidebar extends Component {
 
 	render() {
 		return ( <View style={{ flex: 1, backgroundColor: colors.COLOR_REPORT_SIDEBAR_BACKGROUND }}>
-					<TouchableHighlight onPress={() => this.onSales()}>
+					{/* <TouchableHighlight onPress={() => this.onSales()}>
 						<Text style={this.getSalesMenuStyle()}>{i18n.t('sales')}</Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={() => this.onInventory()}>
 						<Text style={this.getInventoryMenuStyle()}>{i18n.t('inventory')}</Text>
-					</TouchableHighlight>
+					</TouchableHighlight> */}
 					<TouchableHighlight onPress={() => this.onSalesLog()}>
 						<Text style={this.getSalesLogMenuStyle()}>{i18n.t('sales-log')}</Text>
 					</TouchableHighlight>
