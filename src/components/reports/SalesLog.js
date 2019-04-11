@@ -106,9 +106,9 @@ class SalesLog extends Component {
     componentDidMount() {
         console.log("SalesLog - componentDidMount");
         Events.on('RemoveLocalReceipt', 'RemoveLocalReceipt2', this.onRemoveLocalReceipt.bind(this));
-        this.startDate = this.props.dateFilter.startDate;
-        this.endDate = this.props.dateFilter.endDate;
-        this.props.reportActions.GetSalesReportData( this.startDate, this.endDate);
+        // this.startDate = this.props.dateFilter.startDate;
+        // this.endDate = this.props.dateFilter.endDate;
+        // this.props.reportActions.GetSalesReportData( this.startDate, this.endDate);
     }
 
     componentWillUnmount() {
@@ -184,7 +184,7 @@ class SalesLog extends Component {
                         <Text style={styles.receiptDeleteButtonText}>X</Text>
                     </TouchableOpacity>
                 </View>
-                <Text style={{fontSize: 17}}>#{item.totalCount - index} - {i18n.t('total-volume')}: {this._getTotalLiters()}</Text>
+                <Text style={{fontSize: 17}}>#{item.totalCount - index}{/*- {i18n.t('total-volume')}: {this._getTotalLiters()}*/}</Text>
                 <View style={styles.receiptStats}>
                     { !item.active && <Text style={styles.receiptStatusText}>{i18n.t('deleted').toUpperCase()}</Text> }
                     { (item.isLocal || item.updated) ?
@@ -331,8 +331,8 @@ function mapStateToProps(state, props) {
         remoteReceipts: state.receiptReducer.remoteReceipts,
         customers: state.customerReducer.customers,
         products: state.productReducer.products,
-        salesData: state.reportReducer.salesData,
-        dateFilter: state.reportReducer.dateFilter
+        // salesData: state.reportReducer.salesData,
+        // dateFilter: state.reportReducer.dateFilter
     };
 }
 
