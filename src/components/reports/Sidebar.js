@@ -14,9 +14,9 @@ class Sidebar extends Component {
 					<TouchableHighlight onPress={() => this.onSales()}>
 						<Text style={this.getSalesMenuStyle()}>{i18n.t('sales')}</Text>
 					</TouchableHighlight>
-					<TouchableHighlight onPress={() => this.onInventory()}>
+					{/* <TouchableHighlight onPress={() => this.onInventory()}>
 						<Text style={this.getInventoryMenuStyle()}>{i18n.t('inventory')}</Text>
-					</TouchableHighlight>
+					</TouchableHighlight> */}
 					<TouchableHighlight onPress={() => this.onSalesLog()}>
 						<Text style={this.getSalesLogMenuStyle()}>{i18n.t('sales-log')}</Text>
 					</TouchableHighlight>
