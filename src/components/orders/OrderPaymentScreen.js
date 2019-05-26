@@ -382,6 +382,26 @@ class OrderPaymentScreen extends Component {
 		);
 	};
 
+	_getReceiptPaymentType() {
+		if (this.state.isCredit && this.props.payment.credit > 0) {
+			if (this.state.isCash) {
+				return 'Cash/Loan';
+			} else if (this.state.isMobile) {
+				return 'Mobile/Loan';
+			}
+
+			return 'Loan';
+		}
+
+		if (this.state.isCash) {
+			return 'Cash';
+		} else if (this.state.isMobile) {
+			return 'Mobile';
+		}
+
+		return 'Cash';
+	}
+
 	formatAndSaveSale = () => {
 		const currentUser = PosStorage.getSettings().user;
 		const creditProduct = PosStorage.getProducts().reduce((final, product) => {
@@ -436,13 +456,14 @@ class OrderPaymentScreen extends Component {
 			amountLoan: this.props.payment.credit,
 			amountMobile: this.props.payment.mobile,
 			siteId: this.props.selectedCustomer.siteId,
-			paymentType: "",
 			salesChannelId: this.props.selectedCustomer.salesChannelId,
 			customerTypeId: this.props.selectedCustomer.customerTypeId,
 			products: [],
 			active: 1,
 			userName: currentUser
 		};
+
+		receipt.paymentType = this._getReceiptPaymentType();
 
 		// This fixes issues with the pseudo direct customer
 		if (!receipt.siteId) {
