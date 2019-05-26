@@ -23,8 +23,8 @@ class Report extends Component {
 	render() {
 		return (
 			<View style ={{flex:4, backgroundColor: colors.COLOR_REPORT__BACKGROUND}}>
-				{/* <SalesReport/>
-				<InventoryReport/> */}
+				<SalesReport/>
+				<InventoryReport/>
 				<SalesLog/>
 				<WaterOps/>
 			</View>

@@ -89,15 +89,15 @@
 
   "daily-data": "Données Journalières",
 
-  "liters-per-sku": "Litres/SKU",
-  "total-liters": "Total Litres",
+  "liters-per-sku": "Gallons/SKU",
+  "total-liters": "Total Gallons",
   "total-volume": "Volume Total",
   "price-per-sku": "Prix/SKU",
   "total-sales": "Total Ventes",
 
   "previous": "Précédent",
   "current": "Actuel",
-  "delta-liters": "Delta Litres",
+  "delta-liters": "Delta Gallons",
   "delta-inventory": "Delta Inventaire",
   "output": "Sortie",
   "production": "Production",

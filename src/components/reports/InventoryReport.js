@@ -221,7 +221,7 @@ class InventoryReport extends Component {
 
 	getTotalLiters() {
 		if (this.props.inventoryData.salesAndProducts.totalLiters && this.props.inventoryData.salesAndProducts.totalLiters !== 'N/A') {
-			return this.props.inventoryData.salesAndProducts.totalLiters.toFixed(2) + ' L';
+			return this.props.inventoryData.salesAndProducts.totalLiters.toFixed(2) + ' G';
 		} else {
 			return '-';
 		}
@@ -230,14 +230,14 @@ class InventoryReport extends Component {
 
 	getItemTotalLiters(item) {
 		if( item.totalLiters && item.totalLiters !== 'N/A' ){
-			return `${item.totalLiters.toFixed(2)} L`;
+			return `${item.totalLiters.toFixed(2)} G`;
 		}
 		return 'N/A';
 	}
 
 	getItemLitersPerSku(item) {
 		if (item.litersPerSku && item.litersPerSku !== 'N/A') {
-			return `${item.litersPerSku} L`;
+			return `${item.litersPerSku} G`;
 		}
 		return 'N/A';
 	}
@@ -378,7 +378,7 @@ class InventoryReport extends Component {
 		if (current == '-') return '-';
 		let previous = this.getInventorySkuForDisplay(false, item);
 		if (previous == '-') return '-';
-		return `${((current - previous) * item.litersPerSku).toFixed(2)} L`;
+		return `${((current - previous) * item.litersPerSku).toFixed(2)} G`;
 	}
 
 	getTotalInventory(){
@@ -393,7 +393,7 @@ class InventoryReport extends Component {
 				}
 			}
 			if (valid) {
-				return result.toFixed(2) + ' L';
+				return result.toFixed(2) + ' G';
 			} else {
 				return '-';
 			}
@@ -417,7 +417,7 @@ class InventoryReport extends Component {
 		if( getTotalInventory != '-'){
 			inventory = parseFloat(getTotalInventory);
 		}
-		return (sales + inventory).toFixed(2) + ' L';
+		return (sales + inventory).toFixed(2) + ' G';
 	}
 
 	displayEditCurrentSku(sku ){
@@ -441,7 +441,7 @@ class InventoryReport extends Component {
 	getInventoryMeterForDisplay(currentPrev ){
 		let meter = (currentPrev) ? this.props.inventoryData.inventory.currentMeter : this.props.inventoryData.inventory.previousMeter;
 		if( meter != null && !isNaN(meter)){
-			return meter.toFixed(2) + ' L';
+			return meter.toFixed(2) + ' G';
 		}else{
 			return "-";		// No data
 		}
@@ -452,7 +452,7 @@ class InventoryReport extends Component {
 		if( current == '-' || previous == '-'){
 			return '-'
 		}else{
-			return (parseFloat(current) - parseFloat(previous)).toFixed(2) + ' L';
+			return (parseFloat(current) - parseFloat(previous)).toFixed(2) + ' G';
 		}
 	}
 	getWastage(){
