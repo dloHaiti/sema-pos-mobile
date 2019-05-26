@@ -11,6 +11,7 @@ import PosStorage from '../../database/PosStorage';
 import * as Utilities from "../../services/Utilities";
 import i18n from "../../app/i18n";
 import Events from "react-native-simple-events";
+import moment from "moment-timezone";
 
 class PaymentDescription extends Component {
 	render() {
@@ -428,7 +429,7 @@ class OrderPaymentScreen extends Component {
 		let receiptDate = new Date(Date.now());
 
 		let receipt = {
-			id: receiptDate.toISOString(),
+			id: moment.tz(receiptDate, moment.tz.guess()).format('YYYY-MM-DDTHH:mm:ss.SSZ'),
 			createdDate: receiptDate,
 			customerId: this.props.selectedCustomer.customerId,
 			amountCash: this.props.payment.cash,
@@ -501,11 +502,8 @@ class OrderPaymentScreen extends Component {
 				priceTotal: amountPaid
 			};
 
-			if (['liter', 'gallon'].includes(creditProduct.unitMeasure)) {
-				receiptLineItem.litersPerSku = creditProduct.unitPerProduct;
-			} else {
-				receiptLineItem.litersPerSku = "N/A";
-			}
+			// We already know this product is not a water product
+			receiptLineItem.litersPerSku = "N/A";
 
 			// By design, the LOANPAYMENT product has a price and a cogs amount of 0
 			// so no calculations needed
