@@ -833,7 +833,7 @@ class PosStorage {
 	}
 
 	getSalesChannelFromName(name) {
-		if (this.salesChannel) {
+		if (this.salesChannels) {
 			for (let i = 0; i < this.salesChannels.length; i++) {
 				if (this.salesChannels[i].name === name) {
 					return this.salesChannels[i];
@@ -844,7 +844,7 @@ class PosStorage {
 	}
 
 	getSalesChannelFromId(id) {
-		if (this.salesChannel) {
+		if (this.salesChannels) {
 			for (let i = 0; i < this.salesChannels.length; i++) {
 				if (this.salesChannels[i].id === id) {
 					return this.salesChannels[i];
