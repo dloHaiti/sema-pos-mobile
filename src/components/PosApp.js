@@ -239,7 +239,7 @@ class PosApp extends Component {
 			settings.user.length > 0 &&
 			settings.password.length > 0 &&
 			settings.token.length > 0 &&
-			this.posStorage.getCustomerTypes().length > 0) {
+			(this.posStorage.getCustomerTypes() && this.posStorage.getCustomerTypes().length > 0)) {
 			console.log("All settings valid - Proceed to main screen");
 			return true;
 		}
@@ -252,7 +252,7 @@ class PosApp extends Component {
 			settings.user.length > 0 &&
 			settings.password.length > 0 &&
 			settings.token.length == 0 &&
-			this.posStorage.getCustomerTypes().length > 0) {
+			(this.posStorage.getCustomerTypes() && this.posStorage.getCustomerTypes().length > 0)) {
 			return true;
 		}
 		return false;

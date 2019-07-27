@@ -224,7 +224,7 @@ class Settings extends Component {
 		);
 	}
 	getSettingsCancel() {
-		if (PosStorage.getCustomerTypes().length > 0) {
+		if (PosStorage.getCustomerTypes() && PosStorage.getCustomerTypes().length > 0) {
 			return (
 				<TouchableHighlight
 					onPress={() => this.onCancelSettings()}>

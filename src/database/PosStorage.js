@@ -823,6 +823,10 @@ class PosStorage {
 	}
 
 	getSalesChannelsForDisplay() {
+		if (!this.salesChannels) {
+			return [];
+		}
+
 		return this.salesChannels.map(salesChannel => {
 			return {
 				id: salesChannel.id,
@@ -856,6 +860,11 @@ class PosStorage {
 
 	getCustomerTypesForDisplay() {
 		let customerTypesForDisplay = [];
+
+		if (!this.customerTypes) {
+			return [];
+		}
+
 		this.customerTypes.forEach(customerType => {
 			if (customerType.name !== "anonymous") {
 				customerTypesForDisplay.push({
